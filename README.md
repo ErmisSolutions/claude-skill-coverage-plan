@@ -26,6 +26,9 @@ Lines        : 100% ( 2/2 )
 ================================================================================
 ```
 
+*(Vitest's default report lists no files at all here — the 2/2 statements are `math.js`, the only
+file any test imported.)*
+
 **After** (fixing the denominator with `coverage.all: true` and an explicit `include`):
 
 ```
@@ -45,6 +48,9 @@ Functions    : 33.33% ( 2/6 )
 Lines        : 28.57% ( 2/7 )
 ================================================================================
 ```
+
+*(`math.js` is 100% and elided from this table since it has no uncovered lines; the two
+never-imported files now appear, dragging the real number down to 25%.)*
 
 The tool wasn't broken — it was doing exactly what its default does: measuring only files a test
 happened to import, and staying silent about the ones that were never touched. Every major
@@ -72,9 +78,11 @@ raw line count.
 6. Optionally **installs a ratcheting coverage threshold** in CI, set to current measured coverage
    (never an aspirational number), so regressions fail the build automatically.
 
-See `skills/coverage-plan/SKILL.md` for the full workflow, `RISK-MODEL.md` for the ranking
-rationale, `ECOSYSTEMS.md` for per-language detection and denominator fixes, and
-`PLAN-TEMPLATE.md` for the output document shape.
+See [SKILL.md](skills/coverage-plan/SKILL.md) for the full workflow,
+[RISK-MODEL.md](skills/coverage-plan/RISK-MODEL.md) for the ranking rationale,
+[ECOSYSTEMS.md](skills/coverage-plan/ECOSYSTEMS.md) for per-language detection and denominator
+fixes, and [PLAN-TEMPLATE.md](skills/coverage-plan/PLAN-TEMPLATE.md) for the output document
+shape.
 
 ## Install
 
@@ -94,11 +102,11 @@ cp -r claude-skill-coverage-plan/skills/coverage-plan /path/to/your/project/.cla
 
 Then, in Claude Code, just ask:
 
-> "check our test coverage"
-> "why is coverage so low"
-> "what should we test next"
-> "write a testing plan"
-> "add coverage thresholds"
+> - "check our test coverage"
+> - "why is coverage so low"
+> - "what should we test next"
+> - "write a testing plan"
+> - "add coverage thresholds"
 
 Claude Code will pick up the skill automatically based on its description — no slash command
 needed.
